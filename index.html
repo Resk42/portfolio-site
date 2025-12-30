@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yaromir Anohin - Crypto & Web3 Builder</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background-color: #000000;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 4rem 0;
+            opacity: 0;
+            animation: fadeIn 1s ease-in forwards;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 4rem;
+            align-items: center;
+            width: 100%;
+        }
+
+        .hero-image {
+            position: relative;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.3s forwards;
+        }
+
+        .profile-photo {
+            width: 100%;
+            max-width: 320px;
+            aspect-ratio: 1;
+            object-fit: cover;
+            border-radius: 1rem;
+            box-shadow: 0 20px 60px rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .profile-photo:hover {
+            transform: scale(1.02);
+        }
+
+        .hero-text {
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+        }
+
+        .hero-text h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.5rem;
+            color: #888888;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero-text .description {
+            font-size: 1.125rem;
+            color: #cccccc;
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 500;
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background-color: #ffffff;
+            color: #000000;
+        }
+
+        .btn-primary:hover {
+            background-color: #e0e0e0;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.2);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #ffffff;
+            border: 1px solid #ffffff;
+        }
+
+        .btn-secondary:hover {
+            background-color: #ffffff;
+            color: #000000;
+            transform: translateY(-2px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 8rem 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 4rem;
+            letter-spacing: -0.02em;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-item {
+            font-size: 1.5rem;
+            padding: 2rem 0;
+            border-bottom: 1px solid #222222;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            border-bottom-color: #ffffff;
+            transform: translateX(10px);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            border-radius: 1rem;
+            padding: 2.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            border-color: #ffffff;
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(255, 255, 255, 0.1);
+        }
+
+        .project-card h3 {
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .project-card p {
+            color: #888888;
+            font-size: 1.125rem;
+            line-height: 1.7;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            max-width: 700px;
+        }
+
+        .contact-intro {
+            font-size: 1.25rem;
+            color: #cccccc;
+            margin-bottom: 3rem;
+            line-height: 1.8;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.25rem;
+        }
+
+        .contact-item .label {
+            color: #888888;
+            min-width: 100px;
+        }
+
+        .contact-item a {
+            color: #ffffff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: #888888;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-size: 1rem;
+            color: #888888;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background-color: #0a0a0a;
+            border: 1px solid #222222;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            font-size: 1rem;
+            color: #ffffff;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #ffffff;
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .form-message {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .form-message.success {
+            background-color: #0a3a0a;
+            border: 1px solid #0f5a0f;
+            color: #4ade80;
+        }
+
+        .form-message.error {
+            background-color: #3a0a0a;
+            border: 1px solid #5a0f0f;
+            color: #f87171;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0;
+            border-top: 1px solid #1a1a1a;
+            text-align: center;
+        }
+
+        footer p {
+            color: #888888;
+            font-size: 1rem;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .hero-image {
+                display: flex;
+                justify-content: center;
+            }
+
+            .profile-photo {
+                max-width: 250px;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-text .subtitle {
+                font-size: 1.25rem;
+            }
+
+            .hero-text .description {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .skills-grid,
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 1.5rem;
+            }
+
+            section {
+                padding: 4rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-image">
+                    <img src="./image.png" alt="Yaromir Anohin" class="profile-photo">
+                </div>
+                <div class="hero-text">
+                    <h1>Yaromir Anohin</h1>
+                    <p class="subtitle">Crypto & Web3 Builder</p>
+                    <p class="description">
+                        I build Web3 products that can be launched and tested in real conditions — dApps, DeFi protocols, tokenomics, on-chain infrastructure and system design.
+                    </p>
+                    <div class="cta-buttons">
+                        <a href="#contact" class="btn btn-primary">Contact Me</a>
+                        <a href="#projects" class="btn btn-secondary">My Projects</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">Skills & Focus</h2>
+            <div class="skills-grid">
+                <div class="skill-item">Solidity, Hardhat, Foundry</div>
+                <div class="skill-item">Rust (Solana), Anchor</div>
+                <div class="skill-item">Tokenomics & incentive design</div>
+                <div class="skill-item">React, Ethers.js, Wagmi</div>
+                <div class="skill-item">Subgraphs, relayers, infra integrations</div>
+                <div class="skill-item">Product thinking, rapid MVP execution</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">Selected Work</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>Cross-chain Payment Bridge</h3>
+                    <p>An experimental fast-payment bridge between networks.</p>
+                </div>
+                <div class="project-card">
+                    <h3>On-chain Staking Dashboard</h3>
+                    <p>Analytics, yield tracking, and pool management.</p>
+                </div>
+                <div class="project-card">
+                    <h3>Tokenomics Simulation for DAO</h3>
+                    <p>Distribution architecture, incentive models, simulations.</p>
+                </div>
+                <div class="project-card">
+                    <h3>DeFi Yield Optimizer</h3>
+                    <p>Automated yield farming strategies across multiple protocols.</p>
+                </div>
+                <div class="project-card">
+                    <h3>NFT Marketplace Infrastructure</h3>
+                    <p>Custom marketplace with royalty enforcement and gas optimization.</p>
+                </div>
+                <div class="project-card">
+                    <h3>DAO Governance Framework</h3>
+                    <p>Modular governance system with advanced voting mechanisms.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-content">
+                <h2 class="section-title">Contact / Hire Me</h2>
+                <p class="contact-intro">
+                    If you're looking for a builder who can quickly create a working Web3 MVP, refine your idea, and bring it to release — reach out.
+                </p>
+                
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span class="label">Telegram:</span>
+                        <a href="https://t.me/anohinquant" target="_blank">@anohinquant</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="label">Email:</span>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <a href="mailto:anohquantum@gmail.com" id="emailLink">anohquantum@gmail.com</a>
+                            <button onclick="copyEmail()" style="background: none; border: 1px solid #333; color: #888; cursor: pointer; padding: 0.2rem 0.5rem; border-radius: 4px; font-size: 0.8rem;" title="Copy to clipboard">Copy</button>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form" id="contactForm">
+                    <div class="form-message" id="formMessage"></div>
+                    
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="projectType">Project Type</label>
+                        <select id="projectType" name="projectType" style="background-color: #0a0a0a; border: 1px solid #222222; border-radius: 0.5rem; padding: 1rem; font-size: 1rem; color: #ffffff; font-family: inherit; transition: border-color 0.3s ease; width: 100%;">
+                            <option value="General">General Inquiry</option>
+                            <option value="DeFi">DeFi Protocol</option>
+                            <option value="NFT">NFT / Marketplace</option>
+                            <option value="DAO">DAO / Governance</option>
+                            <option value="Audit">Smart Contract Audit</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Yaromir Anohin — Web3 Builder</p>
+        </div>
+    </footer>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section:not(.hero)').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Copy Email Function
+        function copyEmail() {
+            const email = 'anohquantum@gmail.com';
+            navigator.clipboard.writeText(email).then(() => {
+                alert('Email copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy: ', err);
+            });
+        }
+
+        // Contact Form Handler
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                projectType: document.getElementById('projectType').value,
+                message: document.getElementById('message').value
+            };
+
+            const formMessage = document.getElementById('formMessage');
+            
+            try {
+                const response = await fetch('/api/message', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    formMessage.textContent = data.message || 'Message sent successfully! I will get back to you soon.';
+                    formMessage.className = 'form-message success';
+                    formMessage.style.display = 'block';
+                    document.getElementById('contactForm').reset();
+                } else {
+                    throw new Error(data.error || 'Failed to send message');
+                }
+            } catch (error) {
+                formMessage.textContent = error.message || 'Failed to send message. Please try contacting me directly via email or Telegram.';
+                formMessage.className = 'form-message error';
+                formMessage.style.display = 'block';
+            }
+
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                formMessage.style.display = 'none';
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

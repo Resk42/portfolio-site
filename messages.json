@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1766923132564",
+    "name": "Test User",
+    "email": "test@example.com",
+    "projectType": "DeFi",
+    "message": "This is a test message",
+    "datetime": "2025-12-28T11:58:52.564Z",
+    "status": "read"
+  },
+  {
+    "id": "1766953524866",
+    "name": "Dima",
+    "email": "diamond73@list.ru",
+    "projectType": "DAO",
+    "message": "Hey my dier sun? i",
+    "datetime": "2025-12-28T20:25:24.866Z",
+    "status": "read"
+  },
+  {
+    "id": "1767022627608",
+    "name": "иван",
+    "email": "psyhoyanka@gmail.com",
+    "projectType": "NFT",
+    "message": "сделай красиво\n",
+    "datetime": "2025-12-29T15:37:07.608Z",
+    "status": "read"
+  }
+]
