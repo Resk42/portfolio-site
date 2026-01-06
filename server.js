@@ -10,7 +10,7 @@ const fetch = (...args) =>
 const app = express()
 const PORT = process.env.PORT || 3001
 const MESSAGES_FILE = path.join(__dirname, "messages.json")
-const ADMIN_PASSWORD = "admin1234" // TODO: move to env later
+const ADMIN_PASSWORD = "Zlataonelove" // TODO: move to env later
 
 // Middleware
 app.use(cors())
